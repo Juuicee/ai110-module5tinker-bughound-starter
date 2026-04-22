@@ -78,8 +78,9 @@ class BugHoundAgent:
 
         issues = self._parse_json_array_of_issues(raw)
 
-        if issues is None:
-            self._log("ANALYZE", "LLM output was not parseable JSON. Falling back to heuristics.")
+        # Stricter validation - Added to improve reliability when LLM output is malformed or doesn't follow instructions
+        if not issues:
+            self._log("ANALYZE", "LLM output was empty or invalid. Falling back to heuristics.")
             return self._heuristic_analyze(code_snippet)
 
         return issues

@@ -1,3 +1,7 @@
+# GeminiAPI Setup
+
+I successfully integrated the Gemini API into BugHound by configuring the .env file with my API key and running the app in Gemini mode. This allowed the agent to switch from heuristic-based analysis to AI-powered analysis.
+
 # Agent's Behavior
 
 One place where the agent’s behavior feels unreliable is when the heuristic analyzer only checks for a few simple patterns and does not truly understand the logic of the code. This means it can miss important bugs while still reporting that no issues were found. As a result, the rest of the workflow, especially the proposed fix and risk assessment depends on incomplete or shallow analysis, which can lead to misleading results.
