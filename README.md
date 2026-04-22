@@ -1,4 +1,4 @@
-### Summary
+# Summary
 
 The core concept of BugHound is understanding how an agentic workflow combines analysis, action, and evaluation to process code in a structured way rather than relying on a single model output. 
 
@@ -8,15 +8,15 @@ AI is helpful in identifying patterns and suggesting broader or more nuanced iss
 
 One effective way I would guide students is to have them trace a single input through each stage of the pipeline and identify exactly where decisions are made, rather than focusing only on the final fix.
 
-# Proposing Fixes and Evaluating Risk
+### Proposing Fixes and Evaluating Risk
 
 To improve reliability, I modified the auto-fix condition to require both a low risk level and a small number of issues. Specifically, I changed the condition to only allow auto-fix when there is at most one issue. This makes the agent more cautious by preventing automatic application of fixes that involve multiple changes.
 
-# GeminiAPI Setup
+### GeminiAPI Setup
 
 I successfully integrated the Gemini API into BugHound by configuring the .env file with my API key and running the app in Gemini mode. This allowed the agent to switch from heuristic-based analysis to AI-powered analysis.
 
-# Agent's Behavior
+### Agent's Behavior
 
 One place where the agent’s behavior feels unreliable is when the heuristic analyzer only checks for a few simple patterns and does not truly understand the logic of the code. This means it can miss important bugs while still reporting that no issues were found. As a result, the rest of the workflow, especially the proposed fix and risk assessment depends on incomplete or shallow analysis, which can lead to misleading results.
 
