@@ -1,3 +1,7 @@
+# Agent's Behavior
+
+One place where the agent’s behavior feels unreliable is when the heuristic analyzer only checks for a few simple patterns and does not truly understand the logic of the code. This means it can miss important bugs while still reporting that no issues were found. As a result, the rest of the workflow, especially the proposed fix and risk assessment depends on incomplete or shallow analysis, which can lead to misleading results.
+
 # 🐶 BugHound
 
 BugHound is a small, agent-style debugging tool. It analyzes a Python code snippet, proposes a fix, and runs basic reliability checks before deciding whether the fix is safe to apply automatically.
