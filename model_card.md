@@ -18,6 +18,8 @@ Fill this out after you run BugHound in **both** modes (Heuristic and Gemini).
 Describe the workflow in your own words (plan → analyze → act → test → reflect).  
 Include what is done by heuristics vs what is done by Gemini (if enabled).
 
+Heuristics are deterministic but shallow, while Gemini adds flexibility but can produce inconsistent structured outputs. The system relies heavily on post-processing and fallback logic to maintain reliability.
+
 ---
 
 ## 3) Inputs and outputs
@@ -33,6 +35,29 @@ Include what is done by heuristics vs what is done by Gemini (if enabled).
 - What kinds of fixes were proposed?
 - What did the risk report show?
 
+**Inputs:**
+
+I tested:
+
+- short Python scripts
+- code with multiple issues (mixed_issues.py)
+- edge cases like empty or comment-only files
+
+**Outputs:**
+
+Issues such as:
+
+- print usage (code quality)
+
+Fixes such as:
+
+- replacing print with logging
+
+Risk report:
+
+- numeric score (0–100)
+- level (low/medium/high)
+- explanation reasons
 ---
 
 ## 4) Reliability and safety rules
@@ -55,6 +80,15 @@ Provide at least **two** examples:
 
 For each, include the snippet (or describe it) and what went wrong.
 
+1. The heuristic analyzer sometimes misses deeper logic problems
+
+Result: code is marked “low issue” when it actually contains multiple risks.
+
+2. Even when code is already clean, BugHound may still:
+add logging imports
+modify print/log structure unnecessarily
+
+Result: changes are applied without real benefit
 ---
 
 ## 6) Heuristic vs Gemini comparison
@@ -90,3 +124,16 @@ Examples:
 - Better detection of changes that alter behavior
 
 Write your idea clearly and briefly.
+
+A useful improvement would be adding a no-issue confidence penalty guardrail in the risk assessment layer.
+
+If:
+
+the input is non-empty code AND
+no issues are detected
+
+Then:
+
+slightly reduce confidence or increase caution
+
+- This helps prevent situations where the analyzer misses issues entirely and the system incorrectly assumes the code is safe.
