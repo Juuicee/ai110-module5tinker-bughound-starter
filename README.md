@@ -1,3 +1,13 @@
+### Summary
+
+The core concept of BugHound is understanding how an agentic workflow combines analysis, action, and evaluation to process code in a structured way rather than relying on a single model output. 
+
+Students will most likely struggle with distinguishing between heuristic rules and AI-generated behavior, especially when interpreting why the system sometimes ignores or falls back from model responses. 
+
+AI is helpful in identifying patterns and suggesting broader or more nuanced issues that heuristics miss, but it can also be misleading when it produces incomplete, overconfident, or improperly formatted outputs that the agent cannot reliably parse. This makes it important to treat AI output as fallible rather than authoritative. 
+
+One effective way I would guide students is to have them trace a single input through each stage of the pipeline and identify exactly where decisions are made, rather than focusing only on the final fix.
+
 # Proposing Fixes and Evaluating Risk
 
 To improve reliability, I modified the auto-fix condition to require both a low risk level and a small number of issues. Specifically, I changed the condition to only allow auto-fix when there is at most one issue. This makes the agent more cautious by preventing automatic application of fixes that involve multiple changes.
